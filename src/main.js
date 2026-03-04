@@ -47,7 +47,7 @@ class TamilCharMapperApp {
     
     // Settings
     this.settings = {
-      gridWidth: 100,
+      gridWidth: 160,
       fontSize: 10,
       mirror: true
     };
@@ -195,20 +195,20 @@ class TamilCharMapperApp {
       // console.log(`FPS: ${this.fps}`);
     }
     
-    // Fit grid to container: cap columns and rows to what the container can display
+    // Fill container: compute max cols/rows that fit, use slider as upper bound
     const container = this.output.parentElement;
-    const containerW = container.clientWidth - 32; // minus padding
+    const containerW = container.clientWidth - 32;
     const containerH = container.clientHeight - 32;
     const charRatio = this.videoProcessor.measureCharCell();
     const charW = this.settings.fontSize * charRatio;
     const charH = this.settings.fontSize;
     const maxCols = Math.floor(containerW / charW);
     const maxRows = Math.floor(containerH / charH);
-    const gridWidth = Math.min(this.settings.gridWidth, maxCols);
-    const gridHeight = Math.min(
-      this.videoProcessor.getOptimalGridHeight(gridWidth),
-      maxRows
-    );
+    // Use whichever is smaller: what fits or what the slider says
+    const gridWidth = Math.min(maxCols, this.settings.gridWidth);
+    // For height, fill the container vertically while maintaining aspect ratio
+    const aspectHeight = this.videoProcessor.getOptimalGridHeight(gridWidth);
+    const gridHeight = Math.min(aspectHeight, maxRows);
 
     // Get grid samples
     const grid = this.videoProcessor.getGridSamples(gridWidth, gridHeight);
