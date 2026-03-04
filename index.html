@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tamil Character Video Mapper</title>
+  
+  <!-- Load Tamil font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/src/styles.css">
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>தமிழ் Character Mapper</h1>
+      <p class="subtitle">Real-time webcam to Tamil character art</p>
+    </header>
+    
+    <main>
+      <div class="video-container">
+        <!-- Hidden video element for webcam capture -->
+        <video id="webcam" autoplay playsinline muted></video>
+        
+        <!-- Hidden canvas for pixel sampling -->
+        <canvas id="sampling-canvas"></canvas>
+        
+        <!-- Visible output -->
+        <div id="char-output"></div>
+      </div>
+      
+      <div class="controls">
+        <div class="control-group">
+          <label for="charset-select">Character Set:</label>
+          <select id="charset-select">
+            <option value="full">Full Tamil</option>
+            <option value="solkattu">Solkattu (Rhythmic)</option>
+            <option value="vowels">Vowels Only</option>
+            <option value="consonants">Consonants Only</option>
+            <option value="grantha">Grantha Extended</option>
+          </select>
+        </div>
+        
+        <div class="control-group">
+          <label for="grid-width">Grid Width:</label>
+          <input type="range" id="grid-width" min="40" max="160" value="100">
+          <span id="grid-width-value">100</span>
+        </div>
+        
+        <div class="control-group">
+          <label for="font-size">Font Size:</label>
+          <input type="range" id="font-size" min="6" max="24" value="10">
+          <span id="font-size-value">10px</span>
+        </div>
+        
+        <div class="control-group">
+          <label for="color-mode">Color Mode:</label>
+          <select id="color-mode">
+            <option value="mono">Monochrome</option>
+            <option value="color">Source Color</option>
+            <option value="gradient">Gradient</option>
+          </select>
+        </div>
+        
+        <div class="control-group">
+          <label for="bg-color">Background:</label>
+          <input type="color" id="bg-color" value="#0a0a0a">
+        </div>
+        
+        <div class="control-group">
+          <label for="fg-color">Text Color:</label>
+          <input type="color" id="fg-color" value="#00ff88">
+        </div>
+        
+        <div class="control-group checkbox">
+          <input type="checkbox" id="inverted">
+          <label for="inverted">Invert Brightness</label>
+        </div>
+        
+        <div class="control-group checkbox">
+          <input type="checkbox" id="mirror" checked>
+          <label for="mirror">Mirror Video</label>
+        </div>
+        
+        <div class="control-group">
+          <button id="start-btn">Start Camera</button>
+          <button id="screenshot-btn" disabled>Screenshot</button>
+        </div>
+      </div>
+    </main>
+    
+    <footer>
+      <p>Tamil Unicode Range: U+0B80 - U+0BFF | Use with <a href="https://derivative.ca/" target="_blank">TouchDesigner</a> via Web Render TOP</p>
+    </footer>
+  </div>
+  
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{
+  "name": "tamil-char-mapper",
+  "version": "1.0.0",
+  "description": "Real-time webcam to Tamil character art converter",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "vite": "^5.0.0"
+  },
+  "keywords": [
+    "tamil",
+    "ascii-art",
+    "webcam",
+    "character-mapping",
+    "real-time",
+    "video-processing"
+  ],
+  "author": "",
+  "license": "MIT"
+}
